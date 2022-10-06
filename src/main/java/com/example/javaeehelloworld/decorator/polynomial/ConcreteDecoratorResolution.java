@@ -51,6 +51,7 @@ public class ConcreteDecoratorResolution extends AbstractDecoratorPolynomial {
 
         }catch (OperationNotSupportedException e){
             System.out.println("Trinomio no válido y respuesta imaginaria: " + this.polynomial);
+            this.representation = "Trinomio no válido y respuesta imaginaria";
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
