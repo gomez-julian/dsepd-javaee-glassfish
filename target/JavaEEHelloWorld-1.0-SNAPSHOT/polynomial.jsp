@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="fav.ico"/>
 </head>
+<%
+    HttpSession session = request.getSession(false);
+    String username = (String)session.getAttribute("username");
+%>
 <body>
 <div class="session">
     <div class="left-poly">
@@ -37,7 +41,7 @@
             <label for="cvariable">Tercer valor (c):</label>
         </div>
         <button type="submit">Calcular</button>
-        <a href="https://codepen.io/elujambio/pen/yjwzGP" class="discrete" target="_blank">Por Julián Gómez</a>
+        <a href="https://codepen.io/elujambio/pen/yjwzGP" class="discrete" target="_blank">Sesión de <%=username%></a>
     </form>
 </div>
 </body>

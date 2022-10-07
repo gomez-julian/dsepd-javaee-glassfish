@@ -25,8 +25,8 @@
         <h4>We are <span>JULIAN</span></h4>
         <p>Desarrollo de Software Empresaria con Patrones de Diseño</p>
         <div class="floating-label">
-            <input placeholder="Email" type="email" name="email" id="email" autocomplete="off">
-            <label for="email">Email:</label>
+            <input placeholder="Email/Username" type="text" name="email" id="email" autocomplete="off">
+            <label for="email">Username:</label>
             <div class="icon">
                 <?xml version="1.0" encoding="UTF-8"?>
                 <svg enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" xml:space="preserve"

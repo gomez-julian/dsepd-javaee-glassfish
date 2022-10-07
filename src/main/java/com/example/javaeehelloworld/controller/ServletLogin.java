@@ -24,11 +24,22 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email =request.getParameter("email");
+        String password =request.getParameter("password");
         String url = "/polynomial.jsp";
+        WebUser user = WebUser.getUser(email, password);
+        if(user != null){
+            HttpSession session = request.getSession(true);
+            session.setAttribute("username", email);
+
+            request.setAttribute("account", email);
+            loggedUser = email;
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
+        /**
         Map<String, String> credentials = getCredentials();
         if(email != null && credentials.containsKey(email)){
             System.out.println("Entro al primer if");
-            String password =request.getParameter("password");
             if(credentials.get(email).equals(password)){
                 request.setAttribute("account", email);
                 loggedUser = email;
@@ -36,6 +47,7 @@ public class ServletLogin extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         }
+         **/
         url = "/index.jsp";
         request.setAttribute("error", "Error");
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
