@@ -27,18 +27,11 @@
     </div>
     <form action="solution" class="log-in" autocomplete="off" method="post">
         <h4>Ecuación <span>CUADRÁTICA</span></h4>
-        <p>Coloca los valores de la forma <strong>a</strong>x²+<strong>b</strong>x+<strong>c</strong> </p>
+        <p>Lista los términos de la forma "[Coeficiente],[Exponente];"</p>
+        <p>Por ejemplo: 5x³-3x²+8x-12 = 5,3;-3,2;8,1;-12,0</p>
         <div class="floating-label">
-            <input placeholder="Primer valor (a)" type="number" name="avariable" id="avariable" autocomplete="off">
-            <label for="avariable">Primer valor (a):</label>
-        </div>
-        <div class="floating-label">
-            <input placeholder="Segundo valor (b)" type="number" name="bvariable" id="bvariable" autocomplete="off">
-            <label for="bvariable">Primer valor (b):</label>
-        </div>
-        <div class="floating-label">
-            <input placeholder="Tercer valor (c)" type="number" name="cvariable" id="cvariable" autocomplete="off">
-            <label for="cvariable">Tercer valor (c):</label>
+            <input placeholder="Ecuación" type="text" name="polynomial" id="polynomial" autocomplete="off">
+            <label for="polynomial">Polinomio:</label>
         </div>
         <button type="submit">Calcular</button>
         <a href="https://codepen.io/elujambio/pen/yjwzGP" class="discrete" target="_blank">Sesión de <%=username%></a>

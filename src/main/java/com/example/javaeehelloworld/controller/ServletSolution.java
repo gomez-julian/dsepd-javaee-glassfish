@@ -1,8 +1,7 @@
 package com.example.javaeehelloworld.controller;
 
-import com.example.javaeehelloworld.decorator.polynomial.AbstractPolynomial;
-import com.example.javaeehelloworld.decorator.polynomial.ConcreteDecoratorResolution;
-import com.example.javaeehelloworld.decorator.polynomial.ConcretePolynomialEquation;
+
+import com.example.javaeehelloworld.controller.strategy.*;
 import com.example.javaeehelloworld.decorator.polynomial.Term;
 
 import javax.servlet.*;
@@ -24,37 +23,39 @@ public class ServletSolution extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "/solution.jsp";
         String original = null, solution = null, message = null, error;
-        AbstractPolynomial polynomial = new ConcretePolynomialEquation();
+        AbstractPolynomial polynomial = new PolynomialBuilder();
 
-        try {
-            polynomial.addTerm(new Term(Integer.parseInt(request.getParameter("avariable")), 2));
-            polynomial.addTerm(new Term(Integer.parseInt(request.getParameter("bvariable")), 1));
-            polynomial.addTerm(new Term(Integer.parseInt(request.getParameter("cvariable")), 0));
+        String polynomialForm =request.getParameter("polynomial");
+        String [] stringTerms = polynomialForm.split(";");
 
-            original = polynomial.toString();
-            System.out.println(polynomial);
-
-            polynomial = new ConcreteDecoratorResolution(polynomial);
-            solution = polynomial.toString();
-            System.out.println(polynomial);
-
-            message = "El polinomio tiene una respuesta real.";
-        }catch (Exception e){
-            e.printStackTrace();
-
-        }finally {
-            if(solution.length()>20){
-                error = "Error";
-                message = "Ha ocurrido un error o la respuesta es imaginaria";
-                original = "";
-                solution = "";
-                request.setAttribute("error", error);
-            }
-            request.setAttribute("message", message);
-            request.setAttribute("original", original);
-            request.setAttribute("solution", solution);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-            dispatcher.forward(request, response);
+        for(String string: stringTerms){
+            String [] variable = string.split(",");
+            polynomial.addTerm(new Term(Integer.parseInt(variable[0]),Integer.parseInt(variable[1])));
         }
+
+        switch (polynomial.getMaxExponent()){
+            case 1:
+                polynomial = new PolynomialLinear(polynomial.getTerms());
+                message = "Resolución por ecuación lineal";
+                break;
+            case 2:
+                polynomial = new PolynomialQuadratic(polynomial.getTerms());
+                message = "Resolución por ecuación cuadrática";
+                break;
+            case 3:
+                polynomial = new PolynomialCubical(polynomial.getTerms());
+                message = "Resolución por ecuación cúbica";
+                break;
+            default:
+                polynomial = new PolynomialHigher(polynomial.getTerms());
+                message = "Resolución polinómica general";
+        }
+
+        request.setAttribute("solution", polynomial.evaluate());
+        request.setAttribute("original", polynomial.toString());
+        request.setAttribute("message", message);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+
     }
 }
