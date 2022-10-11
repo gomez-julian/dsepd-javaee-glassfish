@@ -27,10 +27,15 @@
     </div>
     <form action="solution" class="log-in" autocomplete="off" method="post">
         <h4>Ecuación <span>CUADRÁTICA</span></h4>
-        <p>Lista los términos de la forma "[Coeficiente],[Exponente];"</p>
-        <p>Por ejemplo: 5x³-3x²+8x-12 = 5,3;-3,2;8,1;-12,0</p>
         <div class="floating-label">
-            <input placeholder="Ecuación" type="text" name="polynomial" id="polynomial" autocomplete="off">
+            <input placeholder="Coeficiente" type="number" name="coefficient" id="coefficient" autocomplete="off">
+            <label for="coefficient">Coeficiente:</label>
+            <input placeholder="Exponente" type="number" name="exponent" id="exponent" autocomplete="off">
+            <label for="exponent">Exponente:</label>
+        </div>
+        <button type="button" onclick="addTerm()">Agregar</button>
+        <div class="floating-label">
+            <input placeholder="Ecuación" type="text" name="polynomial" id="polynomial" autocomplete="off" readonly>
             <label for="polynomial">Polinomio:</label>
         </div>
         <button type="submit">Calcular</button>
@@ -41,4 +46,15 @@
 <style>
     <%@include file="styles/login.css" %>
 </style>
+<script>
+    const coefficient = document.getElementById("coefficient");
+    const exponent = document.getElementById("exponent");
+    const polynomial = document.getElementById("polynomial");
+
+    function addTerm(){
+        polynomial.value = polynomial.value + coefficient.value + "," + exponent.value + ";"
+        coefficient.value = "";
+        exponent.value = "";
+    }
+</script>
 </html>
