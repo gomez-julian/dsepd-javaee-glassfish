@@ -1,7 +1,7 @@
 <%@ page import="com.example.javaeehelloworld.decorator.polynomial.AbstractPolynomial" %>
 <%@ page import="com.example.javaeehelloworld.decorator.polynomial.ConcretePolynomialEquation" %>
 <%@ page import="com.example.javaeehelloworld.decorator.polynomial.ConcreteDecoratorResolution" %>
-<%@ page import="com.example.javaeehelloworld.decorator.polynomial.Term" %>
+<%@ page import="controller.strategy.Term" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
