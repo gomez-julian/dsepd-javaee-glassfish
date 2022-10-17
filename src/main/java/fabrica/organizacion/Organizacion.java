@@ -10,6 +10,22 @@ public abstract class Organizacion {
     protected int limiteTrabajadores;
     protected Vector<Trabajador> trabajadores;
 
+    public Vector<Trabajador> getTrabajadores() {
+        return trabajadores;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public int getLimiteTrabajadores() {
+        return limiteTrabajadores;
+    }
+
     public Organizacion(String nombre, String nivel, int limiteTrabajadores) {
         this.nombre = nombre;
         this.nivel = nivel;
