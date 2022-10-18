@@ -1,3 +1,5 @@
+<%@ page import="fabrica.organizacion.Organizacion" %>
+<%@ page import="modelo.OrganizacionModelo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -7,41 +9,55 @@
     <link rel="shortcut icon" href="fav.ico"/>
 </head>
 <body>
+<%
+    Organizacion organizacion = OrganizacionModelo.organizacion;
+    String[] actividades = organizacion.getActvidades();
+%>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
         <form action="#">
-            <h1>Nueva empresa</h1>
-            <span>Abra una nueva empresa para registrar empleados</span>
-            <input type="text" placeholder="Nombre" id="nombreOrg" name="nombreOrg"/>
-            <input type="number" placeholder="Límite de empleados" id="maxOrg" name="maxOrg"/>
+            <h1><%= organizacion.getNombre()%></h1>
+            <span>Datos de la empresa</span>
+            <input type="text" placeholder="Limite" id="limite" name="limite"
+                   value="<%="Límite: " + organizacion.getLimiteTrabajadores()%>" disabled/>
+            <input type="text" placeholder="Actual" id="actual" name="actual"
+                   value="<%="Actual: " + organizacion.getTrabajadores().size()%>" disabled/>
+            <input type="text" placeholder="Minimo horas" id="minhrs" name="minhrs"
+                    value="<%="Mínimo horas: " + organizacion.getHoraEntrada()%>" disabled/>
+            <input type="text" placeholder="Maximo horas" id="maxhrs" name="maxhrs"
+                   value="<%="Máximo horas: " + organizacion.getHoraSalida()%>" disabled/>
             <select name="giroOrg">
                 <option value="docente">Docencia</option>
                 <option value="administrativo" selected>Administrativo</option>
                 <option value="tecnico">Técnico</option>
             </select>
-            <button>Sign Up</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
         <form action="Empleado" autocomplete="off" method="post">
-            <h1>Nuevo empleado</h1>
-            <span>registre los datos del empleado</span>
+            <h1>Contratar</h1>
             <input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
-            <input type="text" placeholder="Ocupación" id="ocupacion" name="ocupacion"/>
+            <input type="number" placeholder="Salario por hora" id="salario" name="salario"/>
+            <select name="actividad">
+                <%for(String actividad: actividades) {%>
+                <option value="<%=actividad%>"><%=actividad.toUpperCase()%></option>
+                <%}%>
+            </select>
             <button>Contratar</button>
         </form>
     </div>
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-left">
-                <h1>Abrir empresa</h1>
-                <p>Administre los empleados correctamente</p>
+                <h1>Datos de la empresa</h1>
+                <p>Asegurese que se encuentre en la empresa correcta</p>
                 <button class="ghost" id="signIn">Nuevo empleado</button>
+                <a href="ServletOrganizacion" class="ghost">Crear empresa</a>
             </div>
             <div class="overlay-panel overlay-right">
                 <h1>Contratar empleado</h1>
                 <p>Ingrese los datos correspondientes</p>
-                <button class="ghost" id="signUp">Abrir empresa</button>
+                <button class="ghost" id="signUp">Verificar empresa</button>
             </div>
         </div>
     </div>

@@ -5,8 +5,13 @@ import fabrica.trabajador.TrabajadorTecnico;
 
 public class OrganizacionServicio extends Organizacion{
 
-    public OrganizacionServicio(String nombre, String nivel, int limiteTrabajadores) {
-        super(nombre, nivel, limiteTrabajadores);
+    @Override
+    public String[] getActvidades() {
+        return new String[]{"Reparación", "Programación", "Instalación", "Planificación"};
+    }
+
+    public OrganizacionServicio(String nombre, String nivel, int limiteTrabajadores, int horaEntrada, int horaSalida) {
+        super(nombre, nivel, limiteTrabajadores, horaEntrada, horaSalida);
     }
 
     @Override

@@ -20,11 +20,13 @@ public class NuevoEmpleado extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
-        String ocupacion = request.getParameter("ocupacion");
+        String ocupacion = request.getParameter("actividad");
+        double salario = Double.parseDouble(request.getParameter("salario"));
 
         Trabajador trabajador = OrganizacionModelo.organizacion.getTrabajador();
         trabajador.registrarDatos(ocupacion);
         trabajador.setNombre(nombre);
+        trabajador.setSalario(salario);
 
         String vista = "/empleados.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(vista);

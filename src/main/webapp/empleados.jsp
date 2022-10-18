@@ -16,7 +16,7 @@
 <ul class="cards">
     <% for(Trabajador trabajador: trabajadores) { %>
     <li>
-        <a href="" class="card">
+        <a href="<%="ServletSalario?id="+trabajador.getIdTrabajador()%>" class="card">
             <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
             <div class="card__overlay">
                 <div class="card__header">

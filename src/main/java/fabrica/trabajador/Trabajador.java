@@ -11,6 +11,7 @@ public abstract class Trabajador {
     protected String ocupacion;
     protected Horario horario;
     protected TipoActividad actividad;
+    protected double salario;
 
     private static int generadorIds = 0;
 
@@ -66,6 +67,17 @@ public abstract class Trabajador {
     public void setActividad(TipoActividad actividad) {
         this.actividad = actividad;
     }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+
+
 
     @Override
     public String toString(){

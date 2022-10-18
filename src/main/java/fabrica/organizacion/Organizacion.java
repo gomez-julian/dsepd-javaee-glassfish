@@ -9,6 +9,17 @@ public abstract class Organizacion {
     protected String nivel;
     protected int limiteTrabajadores;
     protected Vector<Trabajador> trabajadores;
+    protected int horaEntrada, horaSalida;
+
+    public int getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public int getHoraSalida() {
+        return horaSalida;
+    }
+
+    public abstract String[] getActvidades();
 
     public Vector<Trabajador> getTrabajadores() {
         return trabajadores;
@@ -26,11 +37,13 @@ public abstract class Organizacion {
         return limiteTrabajadores;
     }
 
-    public Organizacion(String nombre, String nivel, int limiteTrabajadores) {
+    public Organizacion(String nombre, String nivel, int limiteTrabajadores, int horaEntrada, int horaSalida) {
         this.nombre = nombre;
         this.nivel = nivel;
         this.limiteTrabajadores = limiteTrabajadores;
         this.trabajadores = new Vector<>();
+        this.horaEntrada = horaEntrada;
+        this.horaSalida = horaSalida;
     }
 
     public abstract Trabajador getTrabajador();
