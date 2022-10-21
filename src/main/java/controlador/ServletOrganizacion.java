@@ -1,5 +1,6 @@
 package controlador;
 
+import fabrica.organizacion.Organizacion;
 import fabrica.organizacion.OrganizacionAcademica;
 import fabrica.organizacion.OrganizacionAdministrativa;
 import fabrica.organizacion.OrganizacionServicio;
@@ -23,11 +24,11 @@ public class ServletOrganizacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         int maxEmple = Integer.parseInt(request.getParameter("maxEmple"));
-        int minHoras = Integer.parseInt(request.getParameter("minHoras"));
-        int maxHoras = Integer.parseInt(request.getParameter("maxHoras"));
+        //int minHoras = Integer.parseInt(request.getParameter("minHoras"));
+        //int maxHoras = Integer.parseInt(request.getParameter("maxHoras"));
+        int minHoras = 4;
+        int maxHoras = 8;
         String giroOrg = request.getParameter("giroOrg");
-
-        System.out.println("girooooooooooooo" + giroOrg);
 
         switch (giroOrg){
             case "docente":
@@ -42,8 +43,16 @@ public class ServletOrganizacion extends HttpServlet {
             default:
                 throw new RuntimeException("Error al cachar esa cosa");
         }
+        //adaptando a EL
+        Organizacion organizacion = OrganizacionModelo.organizacion;
+        String[] actividades = organizacion.getActvidades();
 
-        String vista = "/index.jsp";
+        HttpSession session = request.getSession(true);
+        session.setAttribute("organizacion", organizacion);
+        session.setAttribute("actividades", actividades);
+        //fin adapatación
+
+        String vista = "/opcionesOrganizacion.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(vista);
         dispatcher.forward(request, response);
     }

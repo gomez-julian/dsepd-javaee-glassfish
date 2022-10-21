@@ -10,6 +10,8 @@ public abstract class Organizacion {
     protected int limiteTrabajadores;
     protected Vector<Trabajador> trabajadores;
     protected int horaEntrada, horaSalida;
+    private static String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static int punteroAbc = -1;
 
     public int getHoraEntrada() {
         return horaEntrada;
@@ -66,5 +68,27 @@ public abstract class Organizacion {
 
     public void evaluarDesempenioTrabajador(Trabajador trabajador){
 
+    }
+
+    public abstract Vector<Trabajador> getTrabajadores(int n);
+
+    protected Vector<Trabajador> generarTrabajadores(int n,
+                                               String prefijo,
+                                               int limiteSalario){
+        Vector<Trabajador> trabajadores = new Vector<>();
+        Trabajador trabajadorLoop;
+        for (int i = 0; i < n; i++) {
+            trabajadorLoop = this.getTrabajador();
+            trabajadorLoop.registrarDatos(this.getActvidades()[(int) (Math.random() * 4)]);
+            trabajadorLoop.setNombre(prefijo + nextLetra());
+            trabajadorLoop.setSalario((int) (Math.random() * (limiteSalario)));
+            trabajadores.add(trabajadorLoop);
+        }
+        return trabajadores;
+    }
+
+    private String nextLetra(){
+        punteroAbc++;
+        return String.valueOf(abc.charAt(punteroAbc));
     }
 }

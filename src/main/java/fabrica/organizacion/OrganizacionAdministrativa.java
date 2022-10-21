@@ -3,6 +3,8 @@ package fabrica.organizacion;
 import fabrica.trabajador.Trabajador;
 import fabrica.trabajador.TrabajadorAdministrativo;
 
+import java.util.Vector;
+
 public class OrganizacionAdministrativa extends Organizacion{
 
     @Override
@@ -21,5 +23,10 @@ public class OrganizacionAdministrativa extends Organizacion{
         Trabajador trabajador = new TrabajadorAdministrativo(Trabajador.generarId(), "Administrativo");
         this.trabajadores.add(trabajador);
         return trabajador;
+    }
+
+    @Override
+    public Vector<Trabajador> getTrabajadores(int n) {
+        return generarTrabajadores(n,"Administrativo ", 7000);
     }
 }

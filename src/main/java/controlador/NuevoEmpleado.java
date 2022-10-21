@@ -10,9 +10,12 @@ import java.io.IOException;
 
 @WebServlet(name = "NuevoEmpleado", value = "/Empleado")
 public class NuevoEmpleado extends HttpServlet {
+    //TODO: Redirigir a la vista de listaEmpleados con session
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String vista = "/empleados.jsp";
+        HttpSession session = request.getSession(true);
+        session.setAttribute("organizacion", OrganizacionModelo.organizacion);
+        String vista = "/crearEmpleado.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(vista);
         dispatcher.forward(request, response);
     }
@@ -28,7 +31,9 @@ public class NuevoEmpleado extends HttpServlet {
         trabajador.setNombre(nombre);
         trabajador.setSalario(salario);
 
-        String vista = "/empleados.jsp";
+        HttpSession session = request.getSession(true);
+        session.setAttribute("organizacion", OrganizacionModelo.organizacion);
+        String vista = "/listaEmpleados.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(vista);
         dispatcher.forward(request, response);
     }

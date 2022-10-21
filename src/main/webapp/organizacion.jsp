@@ -28,14 +28,6 @@
             <input placeholder="Límite" type="number" name="maxEmple" id="maxEmple" autocomplete="off">
             <label for="maxEmple">Límite empleados:</label>
         </div>
-        <div class="floating-label">
-            <input placeholder="Mínimo" type="number" name="minHoras" id="minHoras" autocomplete="off">
-            <label for="minHoras">Mínimo de horas:</label>
-        </div>
-        <div class="floating-label">
-            <input placeholder="Máximo" type="number" name="maxHoras" id="maxHoras" autocomplete="off">
-            <label for="maxHoras">Máximo de horas:</label>
-        </div>
 
         <div class="floating-label">
             <select name="giroOrg" id="giroOrg">

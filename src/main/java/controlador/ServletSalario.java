@@ -16,6 +16,11 @@ public class ServletSalario extends HttpServlet {
         Trabajador trabajador = OrganizacionModelo.organizacion.buscarTrabajador(idTrabajador);
         request.setAttribute("trabajador", trabajador);
 
+        //Adapatando a EL
+        HttpSession session = request.getSession(true);
+        session.setAttribute("trabajador", trabajador);
+
+
         String vista = "/salario.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(vista);
         dispatcher.forward(request, response);
@@ -31,6 +36,11 @@ public class ServletSalario extends HttpServlet {
         double salario = (salida - entrada) * trabajador.getSalario();
         request.setAttribute("trabajador", trabajador);
         request.setAttribute("salario", salario);
+
+        //Adapatando a EL
+        HttpSession session = request.getSession(true);
+        session.setAttribute("trabajador", trabajador);
+        session.setAttribute("salario", salario);
 
         String vista = "/calculo.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(vista);
